@@ -1,7 +1,168 @@
-<!DOCTYPE html>
-<html>
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign in to your account</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: #f3f3f3;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 360px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.16);
+      padding: 32px;
+    }
+    .logo {
+      margin-bottom: 32px;
+      text-align: left;
+    }
+    .logo img {
+      height: 24px;
+    }
+    h2 {
+      font-size: 22px;
+      margin: 0 0 20px 0;
+      color: #1b1b1b;
+      font-weight: 400;
+    }
+    label {
+      display: block;
+      color: #505050;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      font-size: 15px;
+      border: 1px solid #a6a6a6;
+      border-radius: 2px;
+      margin-bottom: 16px;
+      outline: none;
+    }
+    .btn {
+      width: 100%;
+      background: #0067b8;
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      padding: 10px 0;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn:active {
+      background: #005da6;
+    }
+    .link {
+      color: #0067b8;
+      font-size: 13px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 4px;
+      margin-bottom: 16px;
+    }
+    .footer {
+      font-size: 12px;
+      color: #888;
+      margin-top: 24px;
+      text-align: center;
+    }
+    .error {
+      color: #b00020;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+  <div class="container" id="login-container">
+    <div class="logo">
+      <img src="https://logincdn.msauth.net/16.000.31225.1/images/microsoft_logo.svg" alt="Microsoft">
+    </div>
+    <h2>Sign in</h2>
+    <form id="login-form">
+      <label for="email">Email, phone, or Skype</label>
+      <input type="email" id="email" name="email" autocomplete="username" required>
+      <div>
+        <a href="#" class="link">No account? Create one!</a>
+      </div>
+      <button class="btn" type="submit">Next</button>
+    </form>
+  </div>
+
+  <div class="container" id="password-container" style="display:none;">
+    <div class="logo">
+      <img src="https://logincdn.msauth.net/16.000.31225.1/images/microsoft_logo.svg" alt="Microsoft">
+    </div>
+    <h2>Enter password</h2>
+    <form id="password-form">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required>
+      <a href="#" class="link">Forgot password?</a>
+      <button class="btn" type="submit">Sign in</button>
+    </form>
+  </div>
+
+  <div class="container" id="change-container" style="display:none;">
+    <div class="logo">
+      <img src="https://logincdn.msauth.net/16.000.31225.1/images/microsoft_logo.svg" alt="Microsoft">
+    </div>
+    <h2>Change your password</h2>
+    <form id="change-form">
+      <label for="oldpass">Current password</label>
+      <input type="password" id="oldpass" name="oldpass" autocomplete="current-password" required>
+      <label for="newpass">New password</label>
+      <input type="password" id="newpass" name="newpass" autocomplete="new-password" required>
+      <label for="confirmpass">Confirm new password</label>
+      <input type="password" id="confirmpass" name="confirmpass" required>
+      <button class="btn" type="submit">Submit</button>
+    </form>
+    <div class="footer">
+      Make sure your new password is strong and secure.
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const loginContainer = document.getElementById('login-container');
+    const passwordContainer = document.getElementById('password-container');
+    const passwordForm = document.getElementById('password-form');
+    const changeContainer = document.getElementById('change-container');
+    const changeForm = document.getElementById('change-form');
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      loginContainer.style.display = 'none';
+      passwordContainer.style.display = 'block';
+    });
+
+    passwordForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      passwordContainer.style.display = 'none';
+      changeContainer.style.display = 'block';
+    });
+
+    changeForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // For simulation, just show a fake "success" message
+      changeContainer.innerHTML = `
+        <div class="logo">
+          <img src="https://logincdn.msauth.net/16.000.31225.1/images/microsoft_logo.svg" alt="Microsoft">
+        </div>
+        <h2>Password changed</h2>
+        <div>Your password was changed successfully.<br><br>(This is a simulation.)</div>
+        <div class="footer" style="margin-top:20px;">Microsoft &copy; 2025</div>
+      `;
+    });
+  </script>
 </body>
 </html>
